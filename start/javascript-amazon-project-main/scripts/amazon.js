@@ -1,3 +1,5 @@
+import {cart} from '../data/cart.js';
+// .. repesents we are going outside current folder
 let productsHTML='';
 products.forEach((product)=>{
     productsHTML+=`<div class="product-container">
@@ -7,7 +9,7 @@ products.forEach((product)=>{
     </div>
 
     <div class="product-Id limit-text-to-2-lines">
-      ${product.Id}
+      ${product.name}
     </div>
 
     <div class="product-rating-container">
@@ -51,11 +53,11 @@ products.forEach((product)=>{
   </div>`;
 
 })
-// data ttribute =>kebab-case=>camelCase
+// data atribute =>kebab-case=>camelCase
 document.querySelector('.js-products-grid').innerHTML =productsHTML;
 document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
     button.addEventListener('click',()=>{
-        const productId=button.dataset.productId;
+        const productId=button.dataset;
         let matchingItem='';
         cart.forEach((item)=>{
             if (productId===item.productId){
@@ -76,8 +78,5 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
         });
 
         document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
-
-        
-        console.log(cartQuantity);
     });
 });
